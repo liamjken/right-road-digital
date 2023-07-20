@@ -8,7 +8,7 @@
     </v-navigation-drawer>
 
     <v-app-bar color="basil" class="pa-3">
-    <v-toolbar-title class="d-flex justify-center"><img class="logo" src="./assets/logo-inverted.png"/></v-toolbar-title>
+    <v-toolbar-title class="d-flex justify-center head-tool-bar"><img class="logo" src="./assets/logo-inverted.png"/></v-toolbar-title>
     </v-app-bar>
     <!-- <v-app-bar color="basil" v-if="!topOfPage">
       <v-toolbar-title><img class="smallLogo" src="./assets/logo-small.png"/></v-toolbar-title>
@@ -87,13 +87,13 @@ background-color:#D4EEC3;
 } */
 
 img.logo{
-  width: 400px;
-}
-img.smallLogo{
-float: left;
-  width: 40px;
+width: 100%;
+max-width: 400px;
 }
 
+.head-tool-bar {
+  margin-inline-start: 0!important;
+}
 
 
 
