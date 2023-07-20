@@ -13,11 +13,12 @@
           <div class="text-h4 px-12 ma-4 text-center">Request Successfully Sent</div>
           <div class="text-p px-12 text-center">Thanks {{ formData.name.val }} for taking the time to complete our contact form.</div>
           <div class="text-p px-12 text-center"> Someone will reach out to you via email within the next business day.</div>
+          <div class="small mt-5 text-center"> This form will be disabled but if you need to resubmit a reqeust simply refresh the page</div>
         </v-card-text>
         <v-card-actions class="justify-end">
           <v-btn
             variant="text"
-            @click="dialog = false"
+            @click="closeAndClear"
           >Close</v-btn>
         </v-card-actions>
       </v-card>
@@ -34,6 +35,7 @@
   :error-messages="nameErrorMessages"
   class="mb-4"
   @blur="clearValidity('name')"
+  :disabled="formSubmitted"
   requried></v-text-field>
   <v-text-field
   variant="outlined"
@@ -43,6 +45,7 @@
   :error-messages="phoneErrorMessages"
   class="mb-4"
   @blur="clearValidity('phone')"
+  :disabled="formSubmitted"
   requried></v-text-field>
   <v-text-field
   variant="outlined"
@@ -52,6 +55,7 @@
   :error-messages="emailErrorMessages"
   class="mb-4"
   @blur="clearValidity('email')"
+  :disabled="formSubmitted"
   requried></v-text-field>
   <v-select
   v-model.trim="formData.ServiceReq.val"
@@ -60,6 +64,7 @@
   label="Services Required"
   :error-messages="ServiceReqErrorMessages"
   @blur="clearValidity('ServiceReq')"
+  :disabled="formSubmitted"
   class="mb-4"
     required>
   </v-select>
@@ -69,13 +74,15 @@
   label="Description of what you need"
   :error-messages="descErrorMessages"
   class="mb-4"
-  @blur="clearValidity('desc')"></v-textarea>
+  @blur="clearValidity('desc')"
+  :disabled="formSubmitted"></v-textarea>
   <v-btn
   flat
   color="primary"
   size="large"
   block
   @click="sendInfo()"
+  :disabled="formSubmitted"
   >Submit</v-btn>
   <template v-slot:activator="{ props }">
     <v-btn
@@ -98,6 +105,7 @@ export default{
     data(){
         return {
             dialog: false,
+            formSubmitted: false,
             formData: {
       name: {
         val: '',
@@ -215,12 +223,29 @@ this.formData[input].IsValid = true;
 
       console.log(data);
       this.dialog = true;
+      this.formSubmitted = true;
 
     } catch(error) {
       alert(error)
     }
+  },
+  closeAndClear() {
+    this.dialog = false
+
+        // Reset form fields to their initial state
+        this.formData.name.val = '';
+    this.formData.phone.val = '';
+    this.formData.email.val = '';
+    this.formData.ServiceReq.val = '';
+    this.formData.desc.val = '';
   }
 }
 }
 
 </script>
+
+<style>
+
+.small{font-size:smaller}
+
+</style>
