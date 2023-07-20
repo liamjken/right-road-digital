@@ -1,38 +1,104 @@
 <template>
+      <v-dialog 
+  transition="dialog-bottom-transition"
+  v-model="dialog"
+  width="auto"
+>
+<v-card>
+        <v-toolbar
+          color="primary"
+          title="Success"
+        ></v-toolbar>
+        <v-card-text>
+          <div class="text-h4 px-12 ma-4 text-center">Request Successfully Sent</div>
+          <div class="text-p px-12 text-center">Thanks {{ formData.name.val }} for taking the time to complete our contact form.</div>
+          <div class="text-p px-12 text-center"> Someone will reach out to you via email within the next business day.</div>
+        </v-card-text>
+        <v-card-actions class="justify-end">
+          <v-btn
+            variant="text"
+            @click="dialog = false"
+          >Close</v-btn>
+        </v-card-actions>
+      </v-card>
+</v-dialog>
+    <v-container class="d-flex justify-center">
 
-  <div v-if="$vuetify.display.xs">
-<HeroMobile/>
-<MainInfoMobile/>
-</div>
-<div v-else-if="!$vuetify.display.xs">
-<HeroDesktop/>
-<MainInfoDesktop/>
-</div>
-<h1 class="d-flex justify-center pa-10">Get in Touch!</h1>
-<MainContact />
+<v-card width="100%" class="px-4 py-4" flat>
+  <v-form @submit.prevent>
+    <v-text-field
+  variant="outlined"
+  v-model.trim="formData.name.val"
+  label="Name"
+  type="text"
+  :error-messages="nameErrorMessages"
+  class="mb-4"
+  @blur="clearValidity('name')"
+  requried></v-text-field>
+  <v-text-field
+  variant="outlined"
+  v-model.trim="formData.phone.val"
+  label="Phone"
+  type="phone"
+  :error-messages="phoneErrorMessages"
+  class="mb-4"
+  @blur="clearValidity('phone')"
+  requried></v-text-field>
+  <v-text-field
+  variant="outlined"
+  v-model.trim="formData.email.val"
+  label="Email"
+  type="email"
+  :error-messages="emailErrorMessages"
+  class="mb-4"
+  @blur="clearValidity('email')"
+  requried></v-text-field>
+  <v-select
+  v-model.trim="formData.ServiceReq.val"
+  variant="outlined"
+  :items="items"
+  label="Services Required"
+  :error-messages="ServiceReqErrorMessages"
+  @blur="clearValidity('ServiceReq')"
+  class="mb-4"
+    required>
+  </v-select>
+  <v-textarea
+  v-model.trim="formData.desc.val"
+  variant="outlined"
+  label="Description of what you need"
+  :error-messages="descErrorMessages"
+  class="mb-4"
+  @blur="clearValidity('desc')"></v-textarea>
+  <v-btn
+  flat
+  color="primary"
+  size="large"
+  block
+  @click="sendInfo()"
+  >Submit</v-btn>
+  <template v-slot:activator="{ props }">
+    <v-btn
+      color="primary"
+      v-bind="props"
+    >
+      Open Dialog
+    </v-btn>
+  </template>
+  <div v-if="!formData.formIsValid" class="v-input__details"><div class="v-messages" role="alert" aria-live="polite" id="input-16-messages"><div class="v-messages__message main-errMsg" style="">Please correct the errors above and resubmit the form.</div></div><!----></div>
+  </v-form>
+</v-card>
+</v-container>
 </template>
 
 <script>
 import axios from 'axios';
 
-import HeroDesktop from '../components/desktop/HeroDesktop.vue';
-import HeroMobile from '../components/mobile/HeroMobile.vue';
-import MainInfoDesktop from '../components/desktop/MainInfo.vue';
-import MainInfoMobile from '../components/mobile/MainInfo.vue';
-import MainContact from '../components/forms/MainContact.vue';
-
-export default {
-components: {
-  HeroDesktop,
-  HeroMobile,
-  MainInfoDesktop,
-  MainInfoMobile,
-  MainContact
-},
-data() {
-  return {
-    dialog: false,
-    formData: {
+export default{
+    data(){
+        return {
+            dialog: false,
+            formData: {
       name: {
         val: '',
         IsValid: true,
@@ -62,10 +128,9 @@ data() {
       mainWrrorMsg: 'Please fix the above errors and submit again'
     },
     items: ['WordPress Website Development', 'WordPress Plugin Development', 'Custom Web Applications', 'a combination'],
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  }
-},
-computed: {
+        }
+    },
+    computed: {
 nameErrorMessages() {
 if (!this.formData.name.IsValid && this.formData.name.errorMsg) {
   return [this.formData.name.errorMsg];
@@ -157,29 +222,5 @@ this.formData[input].IsValid = true;
   }
 }
 }
+
 </script>
-
-<style>
-/* Helper classes */
-
-.sub-head{
-color: white;
-font-size: 1.2em;
-}
-
-.man{
-bottom: -3em;
-position: relative;
-}
-
-.sliderPara{
-font-size: 1.2em;
-}
-.main-errMsg{
-color: #d52525;
-border: solid 3px #b00000;
-padding: 10px;
-font-weight: bolder;
-opacity: 100%;
-}
-</style>
