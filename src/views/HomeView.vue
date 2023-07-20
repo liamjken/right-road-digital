@@ -1,10 +1,10 @@
 <template>
 
-  <div v-if="$vuetify.display.xs">
+  <div v-if="$vuetify.display.mobile">
 <HeroMobile/>
 <MainInfoMobile/>
 </div>
-<div v-else-if="!$vuetify.display.xs">
+<div v-else-if="!$vuetify.display.mobile">
 <HeroDesktop/>
 <MainInfoDesktop/>
 </div>
