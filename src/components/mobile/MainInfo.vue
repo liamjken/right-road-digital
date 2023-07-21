@@ -10,11 +10,11 @@
   <v-window-item v-for="item in mySlides" :key="item" :value="item">
     <v-card flat class="pt-10">
       <v-row>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="12">
           <v-card-title><h5>{{ item.subTitle }}</h5></v-card-title>
       <v-card-text><p class="sliderPara pt-5">{{ item.desc }}</p></v-card-text>
     </v-col>
-    <v-col cols="12" sm="6">
+    <v-col cols="12" sm="12">
       <v-img :src="item.img"></v-img>
     </v-col>
     </v-row>
