@@ -1,31 +1,10 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-    v-model="drawer"
-    v-if="!topOfPage"
-    temporary>
-      <!--  -->
-    </v-navigation-drawer>
 
     <v-app-bar color="basil" class="pa-3">
-    <v-toolbar-title class="d-flex justify-center head-tool-bar"><img class="logo" src="./assets/logo-inverted.png"/></v-toolbar-title>
+    <v-toolbar-title class="d-flex justify-center head-tool-bar"><img class="logo" :src="mainLogo"/></v-toolbar-title>
     </v-app-bar>
-    <!-- <v-app-bar color="basil" v-if="!topOfPage">
-      <v-toolbar-title><img class="smallLogo" src="./assets/logo-small.png"/></v-toolbar-title>
-      {{ pagePosition }}
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-    </v-app-bar> -->
-
     <v-main>
-      <!-- <v-tabs
-      v-model="tab"
-      color="primary"
-      align-tabs="center"
-    >
-      <v-tab :value="2">WP Site Development</v-tab>
-      <v-tab :value="1">WP plugin Development</v-tab>
-      <v-tab :value="3">Custom Web Applications</v-tab>
-    </v-tabs> -->
 <RouterView></RouterView>
     </v-main>
   </v-app>
@@ -33,17 +12,12 @@
 
 
 <script>
+
 export default {
   data(){
     return {
-        topOfPage: true,
-        pagePosition: null,
-        drawer: null,
+        mainLogo: 'https://www.rightroaddigital.com/wp-content/uploads/2023/07/logo-inverted.webp',
     }
-  },
-
-  beforeMount() {
-    window.addEventListener('scroll', this.handleScroll)
   },
  
   methods: {
@@ -54,7 +28,18 @@ export default {
         if(!this.topOfPage) this.topOfPage = true
       }
 this.pagePosition = window.scrollY
-    }
+    },
+
+/*     async getLogo(){
+try {
+  const data = await axios.get('http://rightroaddigital.com/wp-json/wp/v2/media')
+  this.mainLogo = data.data[0].source_url;
+  console.log(data.data[0].source_url)
+} catch(error) {
+  alert(error)
+}
+
+    } */
   },
 }
 
