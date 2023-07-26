@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PrivacyPolicy from '../views/PrivacyPolicy.vue'
 import NotFound from '../views/NotFound.vue'
+import Rotate from '../views/RotateTest.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,11 @@ const router = createRouter({
       path: '/privacy-policy',
       name: 'PrivacyPolicy',
       component: PrivacyPolicy
+    },
+    {
+      path: '/rotate',
+      name: 'rotate',
+      component: Rotate
     },
     {
       path: '/:notFound(.*)',
