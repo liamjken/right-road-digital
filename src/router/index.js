@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import PrivacyPolicy from '../views/PrivacyPolicy.vue'
 import NotFound from '../views/NotFound.vue'
 import Rotate from '../views/RotateTest.vue'
+import Blog from '../views/TheBlog.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,11 @@ const router = createRouter({
       path: '/rotate',
       name: 'rotate',
       component: Rotate
+    },
+    {
+      path: '/blog/:postname/:postid',
+      name: 'blog',
+      component: Blog
     },
     {
       path: '/:notFound(.*)',
