@@ -4,6 +4,7 @@ import PrivacyPolicy from '../views/PrivacyPolicy.vue'
 import NotFound from '../views/NotFound.vue'
 import Rotate from '../views/RotateTest.vue'
 import Blog from '../views/TheBlog.vue'
+import SofieBday from '../views/SofieBday.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +23,12 @@ const router = createRouter({
       path: '/rotate',
       name: 'rotate',
       component: Rotate
+    },
+    {
+      path: '/sofiebday',
+      name: 'sofiebday',
+      component: SofieBday,
+      meta: { hideheader: true},
     },
     {
       path: '/blog/:postname/:postid',

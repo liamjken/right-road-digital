@@ -1,7 +1,7 @@
 <template>
   <v-app>
 
-    <v-app-bar color="basil" class="pa-3">
+    <v-app-bar v-if="!$route.meta.hideheader" color="basil" class="pa-3">
     <v-toolbar-title class="d-flex justify-center head-tool-bar"><img class="logo" :src="mainLogo"/></v-toolbar-title>
     </v-app-bar>
     <v-main>
