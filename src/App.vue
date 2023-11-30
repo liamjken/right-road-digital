@@ -1,9 +1,38 @@
 <template>
   <v-app>
+      <div class="pt-2 bg-background">
+        <v-row no-gutters>
+      <v-col
+        cols="12"
+        sm="12"
+      >
+      <v-toolbar-title class="d-flex justify-center head-tool-bar">
+        <img class="logo" :src="mainLogo"/>
+      </v-toolbar-title>
+    </v-col>
 
-    <v-app-bar v-if="!$route.meta.hideheader" color="basil" class="pa-3">
-    <v-toolbar-title class="d-flex justify-center head-tool-bar"><img class="logo" :src="mainLogo"/></v-toolbar-title>
-    </v-app-bar>
+      <!-- Container for the v-btn -->
+      <v-col
+        cols="12"
+        sm="12"
+      >
+      <div class="d-flex justify-center">
+        
+        <v-btn
+          v-for="(link, index) in menuLinks"
+          :key="index"
+          variant="text"
+        ><RouterLink :to="link.url">{{ link.title }}</RouterLink></v-btn>
+      </div>
+      <v-divider></v-divider>
+    </v-col>
+    </v-row>
+
+
+
+  </div>
+
+
     <v-main>
 <RouterView></RouterView>
     </v-main>
@@ -12,35 +41,61 @@
 
 
 <script>
+import axios from 'axios'
+import { RouterLink } from 'vue-router'
 
 export default {
-  data(){
-    return {
-        mainLogo: 'https://www.rightroaddigital.com/wp-content/uploads/2023/07/logo-inverted.webp',
-    }
-  },
- 
-  methods: {
-    handleScroll(){
-      if(window.scrollY>100){
-        if(this.topOfPage) this.topOfPage = false
-      } else {
-        if(!this.topOfPage) this.topOfPage = true
-      }
-this.pagePosition = window.scrollY
+    data() {
+        return {
+            mainLogo: 'https://www.rightroaddigital.com/wp-content/uploads/2023/07/logo-inverted.webp',
+            links: [
+                'Dashboard',
+                'Messages',
+                'Profile',
+                'Updates',
+            ],
+            menuLinks: []
+        };
     },
-
-/*     async getLogo(){
-try {
-  const data = await axios.get('http://rightroaddigital.com/wp-json/wp/v2/media')
-  this.mainLogo = data.data[0].source_url;
-  console.log(data.data[0].source_url)
-} catch(error) {
-  alert(error)
-}
-
-    } */
-  },
+    mounted() {
+        this.getMenuItems();
+    },
+    methods: {
+        async getMenuItems() {
+            try {
+                const data = await axios.get(`https://rightroaddigital.com/wp-json/vt/v1/menu/?menu_name=main-menu`);
+                this.menuLinks = data.data.map(item => ({
+                    title: item.title,
+                    url: item.url.replace("https://www.rightroaddigital.com", "")
+                }));
+            }
+            catch (error) {
+                alert(error);
+            }
+        },
+        handleScroll() {
+            if (window.scrollY > 100) {
+                if (this.topOfPage)
+                    this.topOfPage = false;
+            }
+            else {
+                if (!this.topOfPage)
+                    this.topOfPage = true;
+            }
+            this.pagePosition = window.scrollY;
+        },
+        /*     async getLogo(){
+        try {
+          const data = await axios.get('http://rightroaddigital.com/wp-json/wp/v2/media')
+          this.mainLogo = data.data[0].source_url;
+          console.log(data.data[0].source_url)
+        } catch(error) {
+          alert(error)
+        }
+        
+            } */
+    },
+    components: { RouterLink }
 }
 
 </script>
@@ -50,6 +105,11 @@ try {
 
 #app {
   font-family: 'Lato', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 body{

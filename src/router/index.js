@@ -5,6 +5,9 @@ import NotFound from '../views/NotFound.vue'
 import Rotate from '../views/RotateTest.vue'
 import Blog from '../views/TheBlog.vue'
 import SofieBday from '../views/SofieBday.vue'
+import sampleProjects from '../views/sampleProjects.vue'
+import ArticleView from '../views/ArticleView.vue'
+import About from '../views/AboutMe.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,9 +34,24 @@ const router = createRouter({
       meta: { hideheader: true},
     },
     {
+      path: '/sample-projects',
+      name: 'sampleProjects',
+      component: sampleProjects,
+    },
+    {
+      path: '/articles',
+      name: 'articles',
+      component: ArticleView,
+    },
+    {
       path: '/blog/:postname/:postid',
       name: 'blog',
       component: Blog
+    },
+    {
+      path: '/about/',
+      name: 'about',
+      component: About
     },
     {
       path: '/:notFound(.*)',

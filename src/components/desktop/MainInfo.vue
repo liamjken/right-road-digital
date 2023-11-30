@@ -1,5 +1,5 @@
 <template>
-    <v-card color="basil" flat class="ma-10">
+    <v-card bg-color="basil" flat class="ma-10">
 <v-tabs v-model="tab" bg-color="transparent" color="basil" grow>
   <v-tab v-for="item in mySlides" :key="item" :value="item">
     {{ item.title }}
