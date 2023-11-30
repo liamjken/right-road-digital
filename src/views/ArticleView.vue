@@ -33,7 +33,9 @@ By sharing these pages online, my goal is to offer a detailed account of my codi
     <v-card-title>{{ article.title.rendered }}</v-card-title>
 
     <v-card-actions>
-      <v-btn color="orange-lighten-2" variant="text" :href="article.link" target="_blank"> Read more... </v-btn>
+      <v-btn color="orange-lighten-2" variant="text">
+        <RouterLink :to="transformLink(article.link)">Read more... </RouterLink>
+        </v-btn>
 
       <v-spacer></v-spacer>
       <v-btn
@@ -85,6 +87,11 @@ export default {
         
     },
     methods: {
+transformLink(link){
+return link.replace("https://www.rightroaddigital.com", "");
+},
+
+
         workOutCols(id){
             if(id === 23){
                 return 12;
