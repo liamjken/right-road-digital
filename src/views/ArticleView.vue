@@ -1,6 +1,21 @@
 <template>
     <v-main>
       <v-container>
+        <v-row class="d-flex justify-center text-center">
+            <v-col class="mb-auto">
+                <h1 class="text-primary text-h2 font-weight-medium mb-3">Blog</h1>
+                <v-divider class="mx-auto w-25"></v-divider>
+            </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center text-center mb-10">
+            <v-col class="">
+                <p class="bio mt-1 mx-auto ">
+                  I want this page to be a platform for me to not only showcase my projects but, more importantly, to explain my coding process and the thought behind each project. This site goes beyond the typical WordPress setup, and I aim to provide insights into what goes into building it.
+
+By sharing these pages online, my goal is to offer a detailed account of my coding journey, seeking advice on areas where improvement is possible and exploring alternative approaches that may not have crossed my mind.
+                </p>
+            </v-col>
+        </v-row>
         <v-row>
           <v-col
             v-for="(article, index) in articleData"
