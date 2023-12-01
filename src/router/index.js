@@ -34,7 +34,7 @@ const router = createRouter({
       meta: { hideheader: true},
     },
     {
-      path: '/sample-projects',
+      path: '/portfolio',
       name: 'sampleProjects',
       component: sampleProjects,
     },

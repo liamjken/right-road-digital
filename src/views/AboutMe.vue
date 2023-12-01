@@ -14,7 +14,7 @@
                     As of the publication of this page, Right Road Digital is not an organization with multiple employees; it's just me, Liam Kennedy. Although my dream is to build Right Road Digital into a successful agency one day, for now, I'm handling operations on my own.
                 </p>
                 <p class="bio text-left mt-3">                     
-Throughout my career, I've worn many hats, from social media marketing to web design, support management, product integration, and more. This diverse experience has given me insight into the intricacies of a growing business that I believe not many people have.
+Throughout my career, I've worn many hats, from social media marketing to web design, support management, product integration, and more. This diverse experience has given me insight into the intricacies of a growing business.
                 </p>
             </v-col>
             <v-col>
@@ -37,10 +37,10 @@ Throughout my career, I've worn many hats, from social media marketing to web de
         </v-row>
         <v-divider class=""></v-divider>
         <v-row  class="d-flex justify-center text-center mt-5">
-            <v-col>
+            <v-col cols="12" sm="6">
                 <h1 class="text-primary text-h4 font-weight-medium text-left">Learn More</h1>
                 <p class="bio mt-3 text-left">
-                    If you want to learn more about my professional journey, you can check out my resume, connect with me on LinkedIn, or explore my projects on GitHub. If you have questions, ideas, or just want to chat tech, feel free to reach out. I'm always up for a good conversation and exciting new projects.
+                    If you want to learn more about my professional journey, you can check out my resume, connect with me on LinkedIn, or explore my projects on GitHub. If you have questions, ideas, or just want to chat, feel free to reach out. I'm always up for a good conversation and exciting new projects.
                 </p>
             </v-col>
             <v-col>

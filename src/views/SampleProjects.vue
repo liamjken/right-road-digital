@@ -15,10 +15,34 @@
             </v-col>
         </v-row>
         <v-row>
+          <v-col>
+          <h2 class="text-h6 mb-2">
+        Filter by
+      </h2>
+
+      <v-chip-group
+        v-model="selections"
+        column
+        multiple 
+        
+      >
+        <v-chip
+        v-for="item in categorySet"
+            :key="item"
+          filter
+          variant="outlined"
+        >
+  {{ item }}
+        </v-chip>
+        
+      </v-chip-group>
+        </v-col></v-row>
+        <v-row>
           <v-col
-            v-for="(item, index) in portfolioData"
+            v-for="(item, index) in filteredPort"
             :key="index"
-            cols="4"
+            cols="12"
+            sm="4"
           >
           <v-card class="mx-auto" max-width="344">
     <v-img
@@ -38,12 +62,12 @@
 
       <v-btn
         :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-        @click="show = !show"
+        @click="changeShowStatus(index)"
       ></v-btn>
     </v-card-actions>
 
     <v-expand-transition>
-      <div v-show="show">
+      <div v-show="show === index">
         <v-divider></v-divider>
 
         <v-card-text>
@@ -65,8 +89,10 @@ import axios from 'axios'
 export default {
     data() {
         return {
-          show: false,
-          portfolioData: []
+          show: null,
+          portfolioData: [],
+          categorySet: null,
+          selections: [],
         }
     },
     mounted(){
@@ -79,17 +105,41 @@ export default {
     try{
       const data = await axios.get(`https://rightroaddigital.com/wp-json/port/v1/portfolio`)
       this.portfolioData = data.data;
+      const categorySet =  data.data.map(item => item.category);
+      const unique = new Set(categorySet);
+      const final =[...unique];
+      this.categorySet = final;
+
+      console.log(final);
     }
     catch(error){
 alert(error);
     }
 
+      },
+
+      changeShowStatus(key){
+             this.show = this.show === key ? null : key;
+        },
+
+
+    },
+    computed: {
+      filteredPort(){
+        const chosenFilter = this.selections;
+  
+  if (chosenFilter.length === 0) {
+    return this.portfolioData;
+  }
+
+  const filterSelection = chosenFilter.map(index => this.categorySet[index]);
+  
+  const filtered = this.portfolioData.filter(item => filterSelection.includes(item.category));
+
+  return filtered;
+        }
       }
-
-
     }
-
-}
 </script>
 
 <style scoped>

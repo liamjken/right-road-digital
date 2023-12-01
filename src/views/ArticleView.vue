@@ -20,7 +20,8 @@ By sharing these pages online, my goal is to offer a detailed account of my codi
           <v-col
             v-for="(article, index) in articleData"
             :key="index"
-            :cols="workOutCols(article.categories[0])"
+            cols="12"
+            :sm="workOutCols(article.categories[0])"
           >
           <v-card class="mx-auto">
     <v-img
