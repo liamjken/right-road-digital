@@ -3,14 +3,14 @@
       <v-container>
         <v-row class="d-flex justify-center text-center">
             <v-col class="mb-auto">
-                <h1 class="text-primary text-h2 font-weight-medium mb-3">Work Examples</h1>
+                <h1 class="text-primary text-h2 font-weight-medium mb-3">Portfolio</h1>
                 <v-divider class="mx-auto w-25"></v-divider>
             </v-col>
         </v-row>
         <v-row class="d-flex justify-center text-center mb-10">
             <v-col class="">
                 <p class="bio mt-1 mx-auto">
-                  This is my work examples page, where I've gathered a mix of projects that have been part of my programming journey. From dabbling in various languages to working on projects in Vue.js and WordPress, these examples offer a glimpse into my love for coding. Whether I was following tutorials from some of the amazing creators out there or tackling challenges during my professional gigs, each piece here represents a chapter in my learning adventure. This page is a live canvas, always growing as I add more stories of innovation and problem-solving. So, feel free to hang out, explore, and check back often because I'm regularly tossing in new content to keep things fresh.
+                  This is my portfolio page, where I've gathered a mix of projects that have been part of my programming journey. From dabbling in various languages to working on projects in Vue.js and WordPress, these examples offer a glimpse into my love for coding. Whether I was following tutorials from some of the amazing creators out there or tackling challenges during my professional gigs, each piece here represents a chapter in my learning adventure. This page is a live canvas, always growing as I add more stories of innovation and problem-solving. So, feel free to hang out, explore, and check back often because I'm regularly tossing in new content to keep things fresh.
                 </p>
             </v-col>
         </v-row>
@@ -23,7 +23,7 @@
       <v-chip-group
         v-model="selections"
         column
-        multiple 
+        multiple
         
       >
         <v-chip
@@ -31,6 +31,7 @@
             :key="item"
           filter
           variant="outlined"
+          color="primary"
         >
   {{ item }}
         </v-chip>

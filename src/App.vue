@@ -18,7 +18,7 @@
       >
       <div class="d-flex justify-center">
         
-        <v-btn
+        <v-btn class="main-menu"
           v-for="(link, index) in menuLinks"
           :key="index"
           variant="text"
@@ -107,7 +107,7 @@ export default {
   font-family: 'Lato', sans-serif;
 }
 
-a {
+.main-menu a {
   text-decoration: none;
   color: inherit;
 }

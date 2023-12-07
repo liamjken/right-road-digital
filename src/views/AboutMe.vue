@@ -100,6 +100,12 @@ Throughout my career, I've worn many hats, from social media marketing to web de
 
 .link-list li{
 padding-bottom: 15px;
+color: white;
+}
+
+.link-list li a{
+color: white;
+text-decoration: none;
 }
 
 </style>

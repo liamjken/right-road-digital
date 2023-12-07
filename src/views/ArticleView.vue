@@ -105,7 +105,7 @@ return link.replace("https://www.rightroaddigital.com", "");
 
     try{
       const data = await axios.get(`https://rightroaddigital.com/wp-json/wp/v2/posts`)
-      this.articleData = data.data;
+      this.articleData = data.data.reverse();
       this.articleImg = await Promise.all(data.data.map(async (item) => ({
         url : await this.getFeaturedIng(item.featured_media),
         id : item.featured_media
@@ -123,7 +123,8 @@ alert(error);
         try{
             if (imgId !== 0){
             const img = await axios.get(`https://www.rightroaddigital.com/wp-json/wp/v2/media/${imgId}`)
-      const imgLink = img.data.media_details.sizes.medium.source_url;
+      const imgLink = img.data.media_details.sizes.full.source_url;
+
         return imgLink;
       } else {
         return;
