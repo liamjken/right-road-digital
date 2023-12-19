@@ -27,9 +27,10 @@ By sharing these pages online, my goal is to offer a detailed account of my codi
     <v-img
       :src="featuredImageURL(article.featured_media)"
       height="200px"
-      cover
+      contain
     >
 </v-img>
+
 
     <v-card-title>{{ article.title.rendered }}</v-card-title>
 
