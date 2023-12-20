@@ -1,7 +1,6 @@
 const createFunc = (version, manifest) => {
 
-    const functionsPhpContent = `
-    <?php
+    const functionsPhpContent = `<?php
     /**
      * Custom Theme functions and definitions
      *
