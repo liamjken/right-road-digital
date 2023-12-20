@@ -57,6 +57,7 @@ const createFunc = (version, manifest) => {
           register_rest_route('vt/v1', '/menu/', array(
               'methods' => 'GET',
               'callback' => 'custom_menu_rest_endpoint',
+              'permission_callback' => '__return_true',
           ));
       });
       `;

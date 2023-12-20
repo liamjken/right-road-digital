@@ -11,8 +11,8 @@
     add_theme_support( 'post-thumbnails' );
     
     function enqueue_vue_scripts() {
-        wp_enqueue_script( 'vue-app', get_stylesheet_directory_uri() . '/assets/index-9fe6c487.js', array(), '1.4', true );
-        wp_enqueue_style( 'vue-app', get_stylesheet_directory_uri() . '/assets/index-9eb4b79a.css', array(), '1.4' );
+        wp_enqueue_script( 'vue-app', get_stylesheet_directory_uri() . '/assets/index-9fe6c487.js', array(), '1.5', true );
+        wp_enqueue_style( 'vue-app', get_stylesheet_directory_uri() . '/assets/index-9eb4b79a.css', array(), '1.5' );
       }
     
     add_action( 'wp_enqueue_scripts', 'enqueue_vue_scripts' );
@@ -55,6 +55,7 @@
           register_rest_route('vt/v1', '/menu/', array(
               'methods' => 'GET',
               'callback' => 'custom_menu_rest_endpoint',
+              'permission_callback' => '__return_true',
           ));
       });
       
