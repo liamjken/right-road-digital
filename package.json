@@ -6,8 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "copy-assets": "mkdir -p bog_road_theme && cp -r dist/assets bog_road_theme/assets/",
-    "generate-functions-php": "node node_custom/create_wp_dir.js",
-    "deploy": "npm run build && npm run copy-assets && npm run generate-functions-php",
+    "generate-php": "node node_custom/create_wp_dir.js",
+    "create-wp": "npm run build && npm run copy-assets && npm run generate-php",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
